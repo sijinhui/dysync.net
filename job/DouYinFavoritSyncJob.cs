@@ -17,7 +17,8 @@ namespace dy.net.job
 
         protected override string GetAuthorAvatarBasePath(DouyinCookie cookie)
         {
-            return Path.Combine(cookie.FavSavePath, "author");
+            // 头像统一存放到容器内固定目录 /app/people，方便单独挂载到 Jellyfin/Emby 的 metadata/People
+            return Path.Combine(AppContext.BaseDirectory, "people");
         }
 
         protected override async Task<List<DouyinCookie>> GetSyncCookies()

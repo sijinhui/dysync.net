@@ -1302,7 +1302,9 @@ namespace dy.net.job
             if (string.IsNullOrWhiteSpace(avatarUrl)) return string.Empty;
 
             // 拼接头像保存路径
-            var avatarSavePath = Path.Combine(GetAuthorAvatarBasePath(cookie), $"{item.Author.Uid}.jpg");
+            var defaultAuthorName = string.IsNullOrWhiteSpace(item.Author.Uid) ? "未知博主" : item.Author.Uid;
+            var authorName = DouyinFileNameHelper.SanitizeLinuxFileName(item.Author.Nickname, defaultAuthorName, true);
+            var avatarSavePath = Path.Combine(GetAuthorAvatarBasePath(cookie), authorName.Substring(0, 1), authorName, "folder.jpg");
             var avatarDir = Path.GetDirectoryName(avatarSavePath);
             // 创建头像保存文件夹
             if (!Directory.Exists(avatarDir)) Directory.CreateDirectory(avatarDir);

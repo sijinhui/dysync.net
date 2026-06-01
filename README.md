@@ -124,6 +124,8 @@ services:
       - /vol2/1000/media/dysync/db:/app/db          # 数据库目录（持久化配置和同步记录）
       # 默认音频目录（用于图文/动态视频合成，版权受限音频的替代）
       - /vol2/1000/media/dysync/mp3:/app/mp3         
+      # 作者头像目录（统一存放，建议挂到 Jellyfin/Emby 的 metadata/People）
+      - /vol2/1000/media/jellyfin/metadata/People:/app/people
       # 账号1 - 视频存储目录
       - /vol2/1000/media/dysync/dy1/coll:/app/collect   # 个人收藏视频
       - /vol2/1000/media/dysync/dy1/fav:/app/favorite   # 个人喜欢视频
@@ -174,6 +176,7 @@ services:
       - /vol2/1000/media/dy001/db:/app/db          # 数据库目录（持久化配置和同步记录）
       - /vol2/1000/media/dy001/mp3:/app/mp3        # 备用音频目录（版权音频无法下载时使用）
       - /vol2/1000/media/dy001/:/app/data  # 视频存储目录
+      - /vol2/1000/media/jellyfin/metadata/People:/app/people  # 作者头像目录（挂到 Jellyfin/Emby 的 metadata/People）
     
 
     network_mode: bridge
